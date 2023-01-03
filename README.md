@@ -31,5 +31,8 @@ From this table, we can find the boolean equation.
 
 ## Karnaugh Map
 
+![kmap](images/KMAP.png)
+
+From that Karnaugh Map, we can conclude that the equation will be:
 
 
