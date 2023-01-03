@@ -80,7 +80,7 @@ void swing(){
 
 int main(void){
     // Set initial state.
-    int s0 = 0, s1 = 0, b1 = 0, b2 = 0, S0 = 0, S1 = 0;
+    int s0 = 0, s1 = 0, b1 = 0, b2 = 0, S0 = 0, S1 = 0, o0 = 0, o1 = 0;
 
     // Loop.
     while(true){
