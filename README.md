@@ -28,7 +28,7 @@ Firstly, the diagram will start from 00, which is an off state. Pressing 1(SWING
 
 From the Diagram, we can make this table:
 
-![table](images/StateTable.png)
+![table](images/StateTableFix.png)
 
 From this table, we can find the boolean equation.
 
