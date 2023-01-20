@@ -32,6 +32,7 @@ void on(){
     printf("|                    |\n");
     printf("|                    |\n");
     printf("======================\n");
+    reset();
 }
 
 void off(){
@@ -53,6 +54,7 @@ void off(){
     printf("|                    |\n");
     printf("|                    |\n");
     printf("======================\n");
+    reset();
 }
 
 void swing(){
@@ -76,6 +78,7 @@ void swing(){
     printf("|                    |\n");
     printf("|                    |\n");
     printf("======================\n");
+    reset();
 }
 
 int main(void){
@@ -84,48 +87,31 @@ int main(void){
 
     // Loop.
     while(true){
-        if ((S0 == 0) && (S1 == 0)){
-            off(); // The AC is in an off state
-            if ((b1 == 0) && (b2 == 0)){
-                off(); // No inputs, so the AC is off.
-            } else if ((b1 == 0) && (b2 == 1)){
-                on(); // 01 is the ON/OFF button, so the AC turns on.
-                S1 = 1;
-            } else if ((b1 == 1) && (b2 == 0)){
-                off(); // 10 is the SWING button, so the AC stays off.
-            }
+        printf("\033[2J\033[1;1H");
+        if (S0 == 0 && S1 == 0){
+            off();
+            printf("Current state: %d %d",s0,s1);
+            printf("\nInputs: %d %d", b1, b2);
+            printf("\nOutput: %d %d\n", o0, o1);
         }
-        else if((S0 == 0) && (S1 == 1)){
-            on(); // 01 is an on state, so the AC is on.
-            if ((b1 == 0) && (b2 == 0)){
-                on(); // No inputs, so nothing changes.
-            } else if((b1 == 0) && (b2 == 1)){
-                off(); // ON/OFF button is pressed, so the AC turns off.
-                S1 = 0;
-            } else if((b1 == 1) && (b2 == 0)){
-                swing(); // SWING button is pressed, so the AC is in swing mode.
-                S1 = 0;
-                S0 = 1;
-            }
+        else if(S0 == 0 && S1 == 1){
+            on();
+            printf("Current state: %d %d",s0,s1);
+            printf("\nInputs: %d %d", b1, b2);
+            printf("\nOutput: %d %d\n", o0, o1);
         }
-        else if((S0 == 1) && (S1 == 0)){
-            swing(); // 10 is swing state, so the AC is in swing mode.
-            if ((b1 == 0) && (b2 == 0)){
-                swing(); // No inputs.
-            } else if((b1 == 0) && (b2 == 1)){
-                off(); // ON/OFF button is pressed, so the AC turns off.
-            } else if((b1 == 1) && (b2 == 0)){
-                on(); // SWING button is pressed, so the AC is back to normal mode.
-                S0 = 0;
-                S1 = 1;
-            }
+        else if(S0 == 1 && S1 == 0){
+            swing();
+            printf("Current state: %d %d",s0,s1);
+            printf("\nInputs: %d %d", b1, b2);
+            printf("\nOutput: %d %d\n", o0, o1);
         }
         
         // Get user input.
         b1 = 0;
         b2 = 0;
         int button;
-        printf("Select a button ([1] for SWING | [2] for ON/OFF): ");
+        printf("\nSelect a button ([1] for SWING | [2] for ON/OFF): ");
         scanf("%d", &button);
 
         if (button == 0){
@@ -137,7 +123,17 @@ int main(void){
         } else if (button == 1){
             b1 = 1;
             b2 = 0;
-        } 
+        } else {
+            b1 = 0;
+            b2 = 0;
+        }
+    
+        // Calculate the next state and output
+        states(s0, s1, b1, b2, &S0, &S1);
+        s0 = S0;
+        s1 = S1;
+        outputs(s0, s1, &o0, &o1);
+
     }
 
     return 0;
