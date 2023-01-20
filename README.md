@@ -28,18 +28,18 @@ Firstly, the diagram will start from 00, which is an off state. Pressing 1(SWING
 
 From the Diagram, we can make this table:
 
-![table](images/StateTableFix.png)
+![table](images/StateTableFix2.png)
 
 From this table, we can find the boolean equation.
 
 
 ## Karnaugh Map
 
-![kmap](images/KMAPFIX.png)
+![kmap](images/KMAPFIX2.png)
 
 From that Karnaugh Map, we can conclude that the equation will be:
 
-![equations](images/Equations.png)
+![equations](images/EquationsFix.png)
 
 
 ## How To Run
